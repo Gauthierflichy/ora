@@ -1,0 +1,75 @@
+<ion-view view-title="Search">
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Categorie
+        </div>
+        <select name="catagory" id="category"
+                ng-options="c.name for c in category.available track by c.id"
+                ng-model="category.selectedOption" ng-change="newSearch()">
+        </select>
+      </label>
+
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Equipement
+        </div>
+        <select name="equipment" id="equipment"
+                ng-options="e.name for e in equipment.available track by e.id"
+                ng-model="equipment.selectedOption" ng-change="newSearch()">
+        </select>
+      </label>
+      <label ng-if="is_available == true" class="item item-input item-select">
+        <div class="input-label">
+          Exercice
+        </div>
+
+        <select name="exercise" id="exercise"
+                ng-options="ex.name for ex in exercise.available track by ex.id"
+                ng-model="e.name" ng-change="updateExo()">
+        </select>
+      </label>
+    </div>
+    <div ng-if="is_available == true" class="padding">
+
+      <a class="item item-thumbnail-left" href="#">
+        <img  class="image-full" src="{{ exercise.image }}" alt="exoImg">
+        <h2>{{ e.name.name }}</h2>
+      </a>
+
+      <label class="item item-input">
+        <span class="input-label">Date</span>
+        <input type="date" ng-model="e.newDate" value="{{ date }}">
+      </label>
+
+      <div class="item range range-positive">
+        <span class="input-label">Series</span>
+        <input type="range" name="repetitions" ng-model="e.series" min="1" max="20" value="5">
+        <span>{{ e.series }}</span>
+      </div>
+
+      <div class="item range range-positive">
+        <span class="input-label">Répétitions</span>
+        <input type="range" name="repetitions" ng-model="e.repetitions" min="5" max="50" value="15">
+        <span>{{ e.repetitions }}</span>
+      </div>
+
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Fréquence
+        </div>
+        <select ng-model="e.frequence">
+          <option>Tous les jours</option>
+          <option selected >Une seul fois</option>
+          <option>1 fois pas semaine</option>
+        </select>
+      </label>
+    </div>
+    <div class="row">
+      <button class="button button-balanced button-full" ng-click="addExo(e)">Enregister</button>
+    </div>
+    </div>
+    <h4 ng-show="is_available == false" class="text-center">Aucun exercice correspondant</h4>
+  </ion-content>
+</ion-view>

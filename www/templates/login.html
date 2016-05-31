@@ -1,0 +1,38 @@
+<ion-modal-view>
+  <ion-content>
+    <div class="login-container col-100  text-center">
+      <div class="error-infos" ng-if ="error != undefined">
+        <h2>{{error}}</h2>
+      </div>
+      <h2>CONNEXION</h2>
+
+      <div class="list login">
+
+        <label class="item-input item-floating-label">
+          <input type="email" ng-model="user.email" placeholder="Email" required>
+        </label>
+
+        <label class="item-input item-floating-label">
+          <input type="password" ng-model="user.password" placeholder="Mot de passe" required>
+        </label>
+
+        <!--<div class="login-social">
+
+          <img src="../img/facebook-logo.png" height="40" alt="" ng-click="loginfb()">
+
+
+          <img src="../img/google-plus-logo.png" height="40" alt="">
+
+
+          <img src="../img/twitter-logo.png" height="40" alt="">
+        </div>-->
+
+        <button class="button-login button-full text-center" ng-click="login(user)">
+          <p>SE CONNECTER</p>
+        </button>
+
+      </div>
+    </div> <!--end login-container-->
+
+  </ion-content>
+</ion-modal-view>

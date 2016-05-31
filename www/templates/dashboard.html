@@ -1,0 +1,45 @@
+<ion-view view-title="Dashboard">
+  <div class="dash-stats">
+    <h2>Bonjour {{ name }} !</h2>
+    <h4>Ici vos points</h4>
+  </div>
+  <ion-content>
+    <div class="dashboard">
+      <div class="main-loader" ng-show="isloading == true">
+        <div class="mdl-spinner mdl-js-spinner is-active"></div>
+      </div>
+      <div class="dash-exos" ng-show="isloading == false">
+        <div ng-show="noExos">
+          <h2>Aucun exercice programmé aujourd'hui   :'(</h2>
+        </div>
+        <div class="card" ng-repeat="ex in $parent.myExercices">
+          <div class="item item-divider">
+            {{ ex.name }}
+          </div>
+          <div class="item item-text-wrap">
+            <div class="list">
+              <div class="item item-icon-right item-icon-left">
+                {{ ex.date | date: 'dd MMMM yyyy' }}
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" ng-click="validateExo(ex)">
+                  Button
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <!--<div class="float-button">
+  <span class="height-fix">
+    <a ui-sref="new" class="content">
+      <i class="ion-plus-round"> </i>
+    </a>
+  </span>
+  </div>-->
+  <div class="float-button">
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ng-click="new()">
+      <i class="material-icons">add</i>
+    </button>
+  </div>
+</ion-view>
