@@ -87,11 +87,11 @@ angular.module('starter.controllers', [])
     }, function(error, userData) {
       if (error) {
         console.log("Error creating user:", error);
-        $scope.modal.hide();
+        $scope.modal2.hide();
         $state.go('login');
       } else {
         console.log("Successfully created user account with uid:", userData.uid);
-        $scope.modal.hide();
+        $scope.modal2.hide();
         $state.go('app.dashboard');
       }
     });
@@ -161,7 +161,7 @@ angular.module('starter.controllers', [])
         function getName(authData) {
           switch(authData.provider) {
             case 'password':
-              return authData.password.email.replace(/@.*/, '');
+              return authData.password.email.replace(/@.*/, '').replace(/\./g, "");
             case 'twitter':
               return authData.twitter.displayName;
             case 'facebook':
@@ -223,6 +223,7 @@ angular.module('starter.controllers', [])
     $state.go('login');
   }
 
+
   var currentDate = new Date();
   var date = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
 
@@ -247,6 +248,11 @@ angular.module('starter.controllers', [])
   $scope.validateExo = function (ex) {
     DBconnect.validateExo(ex, ref, $scope.name)
   };
+
+  ref.child("exercices/"+ name +"/score").on("value", function (snapshot) {
+    var tempscore = snapshot.val();
+    $scope.score = tempscore.score;
+  });
 
   /*$scope.deleteExo = function (ex) {
    DBconnect.deleteExo(ex, ref, $scope.name);

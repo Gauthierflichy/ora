@@ -9,7 +9,7 @@ angular.module('starter.services', [])
         getName: function (authData) {
             switch(authData.provider) {
                 case 'password':
-                    name =  authData.password.email.replace(/@.*/, '');
+                    name =  authData.password.email.replace(/@.*/, '').replace(/\./g, "");
                     return name;
                 case 'twitter':
                     name =  authData.twitter.displayName;
@@ -18,6 +18,15 @@ angular.module('starter.services', [])
                     name =  authData.facebook.displayName;
                     return name;
             }
+
+        },
+
+        getScore: function (ref, name) {
+            ref.child("exercices/"+ name +"/score").once("value", function (snapshot) {
+                var tempscore = snapshot.val();
+                var newscore = tempscore.score;
+                return newscore;
+            });
 
         },
 
@@ -33,12 +42,23 @@ angular.module('starter.services', [])
          },*/
 
         validateExo: function (ex, ref, name) {
-            ref.child("exercices/"+ name+"/"+ex.id).remove();
+            ref.child("exercices/"+ name +"/"+ex.id).remove();
 
+            ref.child("exercices/"+ name +"/score").once("value", function (snapshot) {
+                var tempscore = snapshot.val();
+                var score = tempscore.score;
 
-            ref.child("exercices/"+ name).on("child_removed", function(snapshot) {
-                var deletedPost = snapshot.val();
-                console.log("Exo validé");
+                if (score == undefined) {
+                    score = 10;
+                    ref.child("exercices/"+ name +"/score").set({
+                        score: score
+                    });
+                } else {
+                    score += 10;
+                    ref.child("exercices/"+ name +"/score").set({
+                        score: score
+                    });
+                }
             });
         },
 
@@ -58,7 +78,7 @@ angular.module('starter.services', [])
                 id:  exoID
             });
 
-            console.log(exoID);
+            //console.log(exoID);
 
             /*ref.child("exercices/"+ name).on("child_added", function(snapshot) {
              var addedPost = snapshot.val().name;

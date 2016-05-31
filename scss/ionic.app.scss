@@ -20,6 +20,21 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+
+$stable: #387ef5;
+
+/* DASHBOARD CARD */
+.demo-card-square.mdl-card {
+  width: 100%;
+  height: 320px;
+}
+.demo-card-square > .mdl-card__title {
+  color: #fff;
+  background:
+          url('../img/gym.png') top 35% right 10% no-repeat #46B6AC;
+}
+/* FIN DASHBOARD CARD */
+
 /* LOADER */
 .main-loader {
   position: fixed;
@@ -32,7 +47,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 /* STYLE DASHBOARD PROVISOIR */
 .dashboard {
-  padding-top: 60px;
+  padding-top: 130px;
 }
 
 .dash-stats {
