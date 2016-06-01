@@ -110,26 +110,155 @@ input {
 }
 
 .login-container {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  margin-left:-158px;
+margin-top: 50%;
+  margin-left: 25%;
+ button {
+   margin-top: 33%;
+   width:200px;
+   height:40px;
+ }
+}
+/* FIN LOGIN*/
 
-  h2 {
-    color: black;
+
+/******LOGIN MODAL ********/
+.login-social {
+  margin-top: 5%;
+}
+
+.login {
+  margin-top: 10%;
+}
+.login-modal {
+  background-image: url('../img/Trail-Running.jpg');
+  background-size: cover;
+  h2{
+    margin-top: 50%;
   }
+}
 
+.bouton-connecter {
+  margin-top:10%;
+}
+
+
+.login-dejacompte {
   p {
     color: white;
   }
-
   a {
-    font-weight: bold;
-    text-decoration: none;
+    font-weight:bold;
     color: white;
-    font-size: 15px;
+    text-decoration: none;
+    font-size: 1.3em;
+
   }
 }
+
+
+/* ERROR INFOS */
+.error {
+  margin-top: -20%;
+  h2 {
+    font-size: 1em;
+    color: white;
+    background-color: #f44336;
+  }
+}
+
+
+/********* FIN MODAL *******/
+
+
+/*MENU LEFT */
+/*FIN MENU LEFT */
+
+
+
+/*COMPTE*/
+
+.compte-profil {
+  height: 30%;
+  background-color: indianred;
+}
+
+.profil {
+  h4 {
+    text-align: center;
+    color: white;
+  }
+
+  p {
+    text-align: center;
+    color: white;
+  }
+}
+
+.compte-infos {
+  .compte-info {
+    margin-top: 5%;
+    text-align: center;
+    vertical-align: top;
+    display: inline-block;
+    padding-left: 10%;
+
+    h2 {
+      font-size: 1em;
+      color: black;
+    }
+
+    p {
+      font-size: 0.8em;
+    }
+  }
+
+  .bouton-modifier {
+    margin-top: 5%;
+    margin-left: 33%;
+    background-color: white;
+    height: 40px;
+    width: 140px;
+    border-radius: 40px;
+    border: solid 1px;
+    border-color: indianred;
+
+    p {
+      color: indianred;
+      padding-top: 6%;
+      padding-left: 23%;
+      font-size: 1.4em;
+    }
+  }
+
+  hr {
+    width: 50%;
+    color: indianred;
+    border: solid 1px;
+    margin-top: 5%;
+  }
+
+}
+
+
+
+.compte-statistiques {
+  .compte-stat {
+    vertical-align: top;
+    margin-top: 5%;
+    text-align: center;
+    display: inline-block;
+    padding-left: 5%;
+
+    h2 {
+      font-size: 2em;
+      color: indianred;
+    }
+
+    p {
+      font-size: 1em;
+    }
+  }}
+
 
 
 input:-webkit-autofill {
@@ -206,3 +335,13 @@ input:-webkit-autofill {
 
 /* FIN VIDEOS YOUTUBE */
 
+
+
+
+/******* NOUVEL EXERCICE *******/
+
+#categorie {
+
+}
+
+/********* FIN EXERCICE ********/

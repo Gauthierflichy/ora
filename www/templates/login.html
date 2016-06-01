@@ -1,37 +1,72 @@
 <ion-modal-view>
-  <ion-content>
-    <div class="login-container col-100  text-center">
-      <div class="error-infos" ng-if ="error != undefined">
-        <h2>{{error}}</h2>
+  <ion-content scroll="false" class="login-modal">
+    <div class="text-center ">
+      <div class="error-infos" ng-if="error != undefined">
       </div>
-      <h2>CONNEXION</h2>
 
-      <div class="list login">
+      <div class="text-center">
 
-        <label class="item-input item-floating-label">
-          <input type="email" ng-model="user.email" placeholder="Email" required>
-        </label>
+        <h2>CONNEXION</h2>
 
-        <label class="item-input item-floating-label">
-          <input type="password" ng-model="user.password" placeholder="Mot de passe" required>
-        </label>
+        <div class="list login">
 
-        <!--<div class="login-social">
-
-          <img src="../img/facebook-logo.png" height="40" alt="" ng-click="loginfb()">
+          <div class="error col-50 col-offset-25 error">
+            <h2>
+              {{error}}
+            </h2>
+          </div>
 
 
-          <img src="../img/google-plus-logo.png" height="40" alt="">
+          <label class="item-input item-floating-label">
+            <input type="email" ng-model="user.email" placeholder="Email">
+          </label>
 
 
-          <img src="../img/twitter-logo.png" height="40" alt="">
-        </div>-->
-        <button class="button-login button-full text-center" ng-click="login(user)">
-          <p>SE CONNECTER</p>
-        </button>
 
-      </div>
-    </div> <!--end login-container-->
+          <label class="item-input item-floating-label">
+            <input type="password" ng-model="user.password" placeholder="Mot de passe">
+          </label>
+
+          <div class="login-social">
+            <img src="../img/facebook-logo.png" height="40" alt="">
+
+
+            <img src="../img/google-plus-logo.png" height="40" alt="">
+
+
+            <img src="../img/twitter-logo.png" height="40" alt="">
+          </div>
+
+
+    <div class="bouton-connecter">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" ng-click="login(user)">
+        Se connecter
+      </button>
+    </div>
+
+
+          <!--
+                  <input type="button" class="button button-full button-assertive" value="Se connecter" ng-click="login(user)">
+          -->
+
+          <div class="login-dejacompte">
+            <p>Pas encore de compte ? <a href="#/register">INSCRIPTION</a></p>
+          </div>
+
+
+
+          <!--
+                  <a ng-click="loginfb()" class="btn btn-block btn-social btn-twitter">
+                      <span class="fa fa-twitter"></span>
+                      Sign in with Twitter
+                  </a>
+
+          -->
+
+
+
+
+        </div>
 
   </ion-content>
 </ion-modal-view>

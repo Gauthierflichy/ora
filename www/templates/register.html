@@ -1,28 +1,71 @@
 <ion-modal-view>
-  <ion-content>
-    <div class="login-container col-100  text-center">
-      <h2>S'INSCRIRE</h2>
-
-      <div class="list login">
-
-        <label class=" item-input item-floating-label">
-          <input type="email" ng-model="user.email" placeholder="Email">
-        </label>
-
-        <label class=" item-input item-floating-label">
-          <input type="password" ng-model="user.password" placeholder="Mot de passe">
-        </label>
-
-        <button class="button-login button-full text-center" ng-click="register(user)">
-          <p>S'INSCRIRE</p>
-        </button>
-
-        <div class="login-dejacompte">
-          <p>Vous avez déjà un compte ? <a ui-sref="login">SE CONNECTER</a></p>
-        </div>
-        <h2>{{error}}</h2>
+  <ion-content scroll="false" class="login-modal">
+    <div class="text-center ">
+      <div class="error-infos" ng-if="error != undefined">
       </div>
 
-    </div> <!--end login-container-->
+      <div class="text-center">
+
+        <h2>INSCRIPTION</h2>
+
+        <div class="list login">
+
+          <div class="error col-50 col-offset-25 error">
+            <h2>
+              {{error}}
+            </h2>
+          </div>
+
+
+          <label class="item-input item-floating-label">
+            <input type="email" ng-model="user.email" placeholder="Email">
+          </label>
+
+
+
+          <label class="item-input item-floating-label">
+            <input type="password" ng-model="user.password" placeholder="Mot de passe">
+          </label>
+
+          <div class="login-social">
+
+            <img src="../img/facebook-logo.png" height="40" alt="">
+
+
+            <img src="../img/google-plus-logo.png" height="40" alt="">
+
+
+            <img src="../img/twitter-logo.png" height="40" alt="">
+          </div>
+
+
+          <div class="bouton-connecter">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" ng-click="register(user)">
+              S'inscrire
+            </button>
+          </div>
+
+
+          <!--
+                  <input type="button" class="button button-full button-assertive" value="Se connecter" ng-click="login(user)">
+          -->
+
+          <div class="login-dejacompte">
+            <p>Déjà un compte ? <a href="#/login">Connexion</a></p>
+          </div>
+
+
+
+          <!--
+                  <a ng-click="loginfb()" class="btn btn-block btn-social btn-twitter">
+                      <span class="fa fa-twitter"></span>
+                      Sign in with Twitter
+                  </a>
+
+          -->
+
+
+        </div>
+
   </ion-content>
 </ion-modal-view>
