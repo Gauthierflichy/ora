@@ -117,7 +117,7 @@ angular.module('starter.controllers', [])
           switch (error.code) {
             case "INVALID_EMAIL":
               console.log("The specified user account email is invalid.");
-              $scope.error = 'L\'email est incorrect';
+              $scope.error = 'Email incorrect';
               $scope.isSomethingLoading = false;
               $state.go('login');
               break;
@@ -129,7 +129,7 @@ angular.module('starter.controllers', [])
               break;
             case "INVALID_USER":
               console.log("The specified user account does not exist.");
-              $scope.error = 'Ce compte n\'existe pas';
+              $scope.error = 'Ce compte inexistant';
               $scope.isSomethingLoading = false;
               $state.go('login');
               break;
@@ -145,6 +145,8 @@ angular.module('starter.controllers', [])
           $scope.modal.hide();
           $state.go('app.dashboard');
         }
+
+        $scope.$apply();
 
       });
     }
@@ -211,52 +213,50 @@ angular.module('starter.controllers', [])
 })
 
     
-.controller('DashboardCtrl', function($scope, $state, DBconnect) {
+.controller('DashboardCtrl', function($scope, $state, $ionicHistory, DBconnect) {
   var ref = new Firebase("https://crackling-inferno-6605.firebaseio.com");
   var authData = ref.getAuth();
-  $scope.isloading = true;
-
-  if (authData){
-    $scope.name = DBconnect.getName(authData, ref);
-  }else {
-    ref.unauth();
-    $state.go('login');
-  }
-
-
   var currentDate = new Date();
   var date = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+  $scope.isloading = true;
 
-  console.log(date);
+  ionic.Platform.ready(function() {
+    $ionicHistory.clearCache();
+    $state.go('app.dashboard');
+    if (authData) {
+      $scope.name = DBconnect.getName(authData);
+      ref.child("exercices/" + name).orderByChild("date").equalTo(date.toJSON()).on("value", function (snapshot) {
+        //console.log(snapshot.val());
+        $scope.myExercices = snapshot.val();
 
-  ref.child("exercices/"+name).orderByChild("date").equalTo(date.toJSON()).on("value", function(snapshot) {
-    //console.log(snapshot.val());
-    $scope.myExercices = snapshot.val();
-    
-    if ($scope.myExercices == null){
-      $scope.noExos = true;
+        if ($scope.myExercices == null) {
+          $scope.noExos = true;
+        } else {
+          $scope.noExos = false;
+          $scope.$apply();
+        }
+        $scope.isloading = false;
+        $scope.$apply();
+
+        ref.child("exercices/" + name + "/score").on("value", function (snapshot) {
+          var tempscore = snapshot.val();
+          $scope.score = tempscore.score;
+          $scope.$apply();
+        });
+
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
     } else {
-      $scope.noExos = false;
+      ref.unauth();
+      $state.go('login');
     }
-    $scope.isloading = false;
-    $scope.$apply();
-
-  }, function (errorObject) {
-    console.log("The read failed: " + errorObject.code);
   });
 
   $scope.validateExo = function (ex) {
     DBconnect.validateExo(ex, ref, $scope.name)
   };
 
-  ref.child("exercices/"+ name +"/score").on("value", function (snapshot) {
-    var tempscore = snapshot.val();
-    $scope.score = tempscore.score;
-  });
-
-  /*$scope.deleteExo = function (ex) {
-   DBconnect.deleteExo(ex, ref, $scope.name);
-   };*/
 
   $scope.new = function () {
     $state.go('app.new');

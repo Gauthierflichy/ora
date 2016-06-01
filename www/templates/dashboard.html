@@ -7,16 +7,26 @@
       Votre score: <span>{{ score || 0}}</span>
     </div>
   </div>
-  <ion-content>
+  <ion-content [scrollbar-y="false"]>
     <div class="dashboard">
       <div class="main-loader" ng-show="isloading == true">
         <div class="mdl-spinner mdl-js-spinner is-active"></div>
       </div>
       <div class="dash-exos" ng-show="isloading == false">
-        <div ng-show="noExos">
+        <div ng-show="noExos" class="no-exos">
           <h2>Aucun exercice programmé aujourd'hui   :'(</h2>
         </div>
-        <div class="card" ng-repeat="ex in $parent.myExercices">
+        <ul class="demo-list-item mdl-list">
+          <li class="mdl-list__item" ng-repeat="ex in myExercices">
+            <span class="mdl-list__item-primary-content">
+              {{ ex.name }}
+            </span>
+            <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="validateExo(ex)">
+              <i class="material-icons">done</i>
+            </button>
+          </li>
+        </ul>
+        <!--<div class="card" ng-repeat="ex in myExercices">
           <div class="item item-divider">
             {{ ex.name }}
           </div>
@@ -24,26 +34,15 @@
             <div class="list">
               <div class="item item-icon-right item-icon-left">
                 {{ ex.date | date: 'dd MMMM yyyy' }}
-                <!--<button class="mdl-button mdl-js-button mdl-button&#45;&#45;raised mdl-js-ripple-effect mdl-button&#45;&#45;accent" ng-click="validateExo(ex)">
-                  <i class="material-icons">done</i>
-                </button>-->
-                <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="validateExo(ex)">
-                  <i class="material-icons">done</i>
-                </button>
+
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </ion-content>
-  <!--<div class="float-button">
-  <span class="height-fix">
-    <a ui-sref="new" class="content">
-      <i class="ion-plus-round"> </i>
-    </a>
-  </span>
-  </div>-->
+
   <div class="float-button">
     <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ng-click="new()">
       <i class="material-icons">add</i>

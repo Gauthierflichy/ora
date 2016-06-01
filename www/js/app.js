@@ -66,6 +66,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
     .state('app.dashboard', {
+      cache: false,
       url: '/dashboard',
       views: {
         'menuContent': {

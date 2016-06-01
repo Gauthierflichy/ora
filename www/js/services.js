@@ -1,10 +1,7 @@
 angular.module('starter.services', [])
 
 .factory('DBconnect', function () {
-
-    var myExercices = [];
-
-    var db = {
+    return {
 
         getName: function (authData) {
             switch(authData.provider) {
@@ -21,14 +18,14 @@ angular.module('starter.services', [])
 
         },
 
-        getScore: function (ref, name) {
+        /*getScore: function (ref, name) {
             ref.child("exercices/"+ name +"/score").once("value", function (snapshot) {
                 var tempscore = snapshot.val();
                 var newscore = tempscore.score;
                 return newscore;
             });
 
-        },
+        },*/
 
 
         /*    deleteExo: function (ex, ref, name) {
@@ -88,6 +85,5 @@ angular.module('starter.services', [])
 
     };
 
-    return db;
-
 });
+
