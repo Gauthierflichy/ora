@@ -1,47 +1,72 @@
 <ion-modal-view>
   <ion-content scroll="false" class="login-modal">
     <div class="text-center ">
-      <div class="error-infos" ng-if ="error != undefined">
-        <h2>{{error}}</h2>
+      <div class="error-infos" ng-if="error != undefined">
       </div>
-      <h2>CONNEXION</h2>
 
-      <div class="list login">
+      <div class="text-center">
 
-        <form action="#">
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-model="user.email">
-            <input class="mdl-textfield__input" type="email" id="sample3">
-            <label class="mdl-textfield__label" for="sample3">Email</label>
+        <h2>CONNEXION</h2>
+
+        <div class="list login">
+
+          <div class="error col-50 col-offset-25 error">
+            <h2>
+              {{error}}
+            </h2>
           </div>
 
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-model="user.password">
-          <input class="mdl-textfield__input" type="password" id="sample4">
-          <label class="mdl-textfield__label" for="sample4">Text...</label>
+
+          <label class="item-input item-floating-label">
+            <input type="email" ng-model="user.email" placeholder="Email">
+          </label>
+
+
+
+          <label class="item-input item-floating-label">
+            <input type="password" ng-model="user.password" placeholder="Mot de passe">
+          </label>
+
+          <div class="login-social">
+            <img src="../img/facebook-logo.png" height="40" alt="">
+
+
+            <img src="../img/google-plus-logo.png" height="40" alt="">
+
+
+            <img src="../img/twitter-logo.png" height="40" alt="">
+          </div>
+
+
+    <div class="bouton-connecter">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" ng-click="login(user)">
+        Se connecter
+      </button>
+    </div>
+
+
+          <!--
+                  <input type="button" class="button button-full button-assertive" value="Se connecter" ng-click="login(user)">
+          -->
+
+          <div class="login-dejacompte">
+            <p>Pas encore de compte ? <a href="#/register">INSCRIPTION</a></p>
+          </div>
+
+
+
+          <!--
+                  <a ng-click="loginfb()" class="btn btn-block btn-social btn-twitter">
+                      <span class="fa fa-twitter"></span>
+                      Sign in with Twitter
+                  </a>
+
+          -->
+
+
+
+
         </div>
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                  ng-click="login(user)">
-            Se connecter
-          </button>
-
-        </form>
-
-        <!--<div class="login-social">
-
-          <img src="../img/facebook-logo.png" height="40" alt="" ng-click="loginfb()">
-
-
-          <img src="../img/google-plus-logo.png" height="40" alt="">
-
-
-          <img src="../img/twitter-logo.png" height="40" alt="">
-        </div>-->
-
-        <button class="button-login button-full text-center" ng-click="login(user)">
-          <p>SE CONNECTER</p>
-        </button>
-
-      </div>
-    </div> <!--end login-container-->
 
   </ion-content>
 </ion-modal-view>

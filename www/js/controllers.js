@@ -146,7 +146,9 @@ angular.module('starter.controllers', [])
           $state.go('app.dashboard');
         }
 
+        $scope.$apply();
       });
+
     }
 
     ref.onAuth(function(authData) {

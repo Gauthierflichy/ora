@@ -9885,48 +9885,41 @@ input {
     height: 40px; }
 
 /* FIN LOGIN*/
-/*LOGIN MODAL */
+/******LOGIN MODAL ********/
+.login-social {
+  margin-top: 5%; }
+
+.login {
+  margin-top: 10%; }
+
 .login-modal {
   background-image: url("../img/Trail-Running.jpg");
   background-size: cover; }
   .login-modal h2 {
     margin-top: 50%; }
 
-/* FIN MODAL */
-/* MENU LEFT */
-.menu {
-  background-color: #e8e8e8; }
-  .menu .item-content {
-    background-color: #e8e8e8 !important; }
+.bouton-connecter {
+  margin-top: 10%; }
 
-.profil-menu {
-  height: 25%;
-  background-color: indianred; }
-  .profil-menu h4 {
-    text-align: center;
-    line-height: 10px; }
-  .profil-menu p {
-    text-align: center; }
+.login-dejacompte p {
+  color: white; }
 
-.icon-profil {
-  text-align: center; }
-  .icon-profil img {
-    border-radius: 50%;
-    width: 25%;
-    margin-top: 5%; }
+.login-dejacompte a {
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  font-size: 1.3em; }
 
-.liens-menu-single img {
-  height: 30px; }
+/* ERROR INFOS */
+.error {
+  margin-top: -20%; }
+  .error h2 {
+    font-size: 1em;
+    color: white;
+    background-color: #f44336; }
 
-.liens-menu-single h4 {
-  font-family: Roboto;
-  padding-top: 3%;
-  padding-left: 5%;
-  font-size: 1.2em; }
-
-.item-complex {
-  height: 70px !important; }
-
+/********* FIN MODAL *******/
+/*MENU LEFT */
 /*FIN MENU LEFT */
 /*COMPTE*/
 .compte-profil {
@@ -10041,3 +10034,5 @@ input:-webkit-autofill {
   border: 0; }
 
 /* FIN VIDEOS YOUTUBE */
+/******* NOUVEL EXERCICE *******/
+/********* FIN EXERCICE ********/
