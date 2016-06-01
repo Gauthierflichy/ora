@@ -28,11 +28,21 @@ $stable: #387ef5;
   width: 100%;
   height: 320px;
 }
+
+.demo-card-square span {
+  font-size: 3em;
+}
+
 .demo-card-square > .mdl-card__title {
   color: #fff;
   background:
           url('../img/gym.png') top 35% right 10% no-repeat #46B6AC;
 }
+
+.mdl-card__title-text {
+  font-size: 3em!important;
+}
+
 /* FIN DASHBOARD CARD */
 
 /* LOADER */
@@ -90,7 +100,7 @@ $stable: #387ef5;
 /* BOUTON FLOTANT */
 .float-button {
   position: fixed;
-  bottom: 20px; /* Adjust to where you want it */
+  top: 36.5%; /* Adjust to where you want it */
   right: 20px; /* Adjust to where you want it */
   z-index: 9999;
 }

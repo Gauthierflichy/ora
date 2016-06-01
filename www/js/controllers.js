@@ -221,8 +221,6 @@ angular.module('starter.controllers', [])
   $scope.isloading = true;
 
   ionic.Platform.ready(function() {
-    $ionicHistory.clearCache();
-    $state.go('app.dashboard');
     if (authData) {
       $scope.name = DBconnect.getName(authData);
       ref.child("exercices/" + name).orderByChild("date").equalTo(date.toJSON()).on("value", function (snapshot) {
@@ -233,20 +231,22 @@ angular.module('starter.controllers', [])
           $scope.noExos = true;
         } else {
           $scope.noExos = false;
-          $scope.$apply();
+          //$scope.$apply();
         }
         $scope.isloading = false;
-        $scope.$apply();
+        //$scope.$apply();
 
         ref.child("exercices/" + name + "/score").on("value", function (snapshot) {
           var tempscore = snapshot.val();
           $scope.score = tempscore.score;
-          $scope.$apply();
+          //$scope.$apply();
         });
-
+        $ionicHistory.clearCache();
+        $state.go('app.dashboard');
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
+
     } else {
       ref.unauth();
       $state.go('login');
@@ -261,6 +261,7 @@ angular.module('starter.controllers', [])
   $scope.new = function () {
     $state.go('app.new');
   };
+
 })
 
 .controller('NewCtrl', function($scope, $http, $state, $ionicHistory, DBconnect) {
