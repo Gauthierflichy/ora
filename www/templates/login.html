@@ -1,6 +1,6 @@
 <ion-modal-view>
-  <ion-content>
-    <div class="login-container col-100  text-center">
+  <ion-content scroll="false" class="login-modal">
+    <div class="text-center ">
       <div class="error-infos" ng-if ="error != undefined">
         <h2>{{error}}</h2>
       </div>
@@ -8,13 +8,22 @@
 
       <div class="list login">
 
-        <label class="item-input item-floating-label">
-          <input type="email" ng-model="user.email" placeholder="Email" required>
-        </label>
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-model="user.email">
+            <input class="mdl-textfield__input" type="email" id="sample3">
+            <label class="mdl-textfield__label" for="sample3">Email</label>
+          </div>
 
-        <label class="item-input item-floating-label">
-          <input type="password" ng-model="user.password" placeholder="Mot de passe" required>
-        </label>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-model="user.password">
+          <input class="mdl-textfield__input" type="password" id="sample4">
+          <label class="mdl-textfield__label" for="sample4">Text...</label>
+        </div>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                  ng-click="login(user)">
+            Se connecter
+          </button>
+
+        </form>
 
         <!--<div class="login-social">
 
@@ -26,6 +35,7 @@
 
           <img src="../img/twitter-logo.png" height="40" alt="">
         </div>-->
+
         <button class="button-login button-full text-center" ng-click="login(user)">
           <p>SE CONNECTER</p>
         </button>

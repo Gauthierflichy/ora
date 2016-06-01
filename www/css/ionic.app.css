@@ -9877,19 +9877,114 @@ input {
   background-size: cover; }
 
 .login-container {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  margin-left: -158px; }
-  .login-container h2 {
+  margin-top: 50%;
+  margin-left: 25%; }
+  .login-container button {
+    margin-top: 33%;
+    width: 200px;
+    height: 40px; }
+
+/* FIN LOGIN*/
+/*LOGIN MODAL */
+.login-modal {
+  background-image: url("../img/Trail-Running.jpg");
+  background-size: cover; }
+  .login-modal h2 {
+    margin-top: 50%; }
+
+/* FIN MODAL */
+/* MENU LEFT */
+.menu {
+  background-color: #e8e8e8; }
+  .menu .item-content {
+    background-color: #e8e8e8 !important; }
+
+.profil-menu {
+  height: 25%;
+  background-color: indianred; }
+  .profil-menu h4 {
+    text-align: center;
+    line-height: 10px; }
+  .profil-menu p {
+    text-align: center; }
+
+.icon-profil {
+  text-align: center; }
+  .icon-profil img {
+    border-radius: 50%;
+    width: 25%;
+    margin-top: 5%; }
+
+.liens-menu-single img {
+  height: 30px; }
+
+.liens-menu-single h4 {
+  font-family: Roboto;
+  padding-top: 3%;
+  padding-left: 5%;
+  font-size: 1.2em; }
+
+.item-complex {
+  height: 70px !important; }
+
+/*FIN MENU LEFT */
+/*COMPTE*/
+.compte-profil {
+  height: 30%;
+  background-color: indianred; }
+
+.profil h4 {
+  text-align: center;
+  color: white; }
+
+.profil p {
+  text-align: center;
+  color: white; }
+
+.compte-infos .compte-info {
+  margin-top: 5%;
+  text-align: center;
+  vertical-align: top;
+  display: inline-block;
+  padding-left: 10%; }
+  .compte-infos .compte-info h2 {
+    font-size: 1em;
     color: black; }
-  .login-container p {
-    color: white; }
-  .login-container a {
-    font-weight: bold;
-    text-decoration: none;
-    color: white;
-    font-size: 15px; }
+  .compte-infos .compte-info p {
+    font-size: 0.8em; }
+
+.compte-infos .bouton-modifier {
+  margin-top: 5%;
+  margin-left: 33%;
+  background-color: white;
+  height: 40px;
+  width: 140px;
+  border-radius: 40px;
+  border: solid 1px;
+  border-color: indianred; }
+  .compte-infos .bouton-modifier p {
+    color: indianred;
+    padding-top: 6%;
+    padding-left: 23%;
+    font-size: 1.4em; }
+
+.compte-infos hr {
+  width: 50%;
+  color: indianred;
+  border: solid 1px;
+  margin-top: 5%; }
+
+.compte-statistiques .compte-stat {
+  vertical-align: top;
+  margin-top: 5%;
+  text-align: center;
+  display: inline-block;
+  padding-left: 5%; }
+  .compte-statistiques .compte-stat h2 {
+    font-size: 2em;
+    color: indianred; }
+  .compte-statistiques .compte-stat p {
+    font-size: 1em; }
 
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px white inset;
