@@ -177,40 +177,50 @@ angular.module('starter.controllers', [])
 
 .controller('VideosCtrl', function($scope, $http){
 
-  $scope.hidebtn=false;//Pour cacher les boutons sur la page de vidéos
+      $scope.categorie = function(z){
+        $scope.type = z;
+      };
 
-  $scope.research = function (keyword){
+      $scope.back = function (){
+        $scope.hidebtn =false;
+        $scope.type="Catégories";
+      }
 
-    $scope.hidebtn=true;
-    $scope.videos = [];
 
-    console.log(keyword);
-    $scope.youtubeParams = {
-      key: 'AIzaSyDK9o9agLRbyMysXeUaR1NMRAuM7393vD4',
-      type: 'video',
-      maxResults: '3',
-      part: 'id,snippet',
-      q: keyword,
-      order: 'relevance',
-      rating:'like',
-      safeSearch:'strict',
-      videoDuration:'medium',
-      publishedAfter:'2016-05-01T00:00:00Z'
-    };
+      $scope.hidebtn=false;//Pour cacher les boutons sur la page de vidéos
 
-    $http.get('https://www.googleapis.com/youtube/v3/search', {params:$scope.youtubeParams}).success(function(response){
-      angular.forEach(response.items, function(child){
-        $scope.videos.push(child);
-      });
-    });
-  };
+      $scope.research = function (keyword){
 
-  $scope.playerVars = {
-    rel: 0,
-    showinfo: 0,
-    modestbranding: 0
-  }
-})
+        $scope.hidebtn=true;
+        $scope.videos = [];
+
+        console.log(keyword);
+        $scope.youtubeParams = {
+          key: 'AIzaSyDK9o9agLRbyMysXeUaR1NMRAuM7393vD4',
+          type: 'video',
+          maxResults: '3',
+          part: 'id,snippet',
+          q: keyword,
+          order: 'relevance',
+          rating:'like',
+          safeSearch:'strict',
+          videoDuration:'medium',
+          publishedAfter:'2016-05-01T00:00:00Z'
+        };
+
+        $http.get('https://www.googleapis.com/youtube/v3/search', {params:$scope.youtubeParams}).success(function(response){
+          angular.forEach(response.items, function(child){
+            $scope.videos.push(child);
+          });
+        });
+      };
+
+      $scope.playerVars = {
+        rel: 0,
+        showinfo: 0,
+        modestbranding: 0
+      }
+    })
 
     
 .controller('DashboardCtrl', function($scope, $state, $ionicHistory, DBconnect) {
