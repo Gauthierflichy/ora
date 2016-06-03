@@ -9818,7 +9818,7 @@ a.button {
 /* DASHBOARD CARD */
 .demo-card-square.mdl-card {
   width: 100%;
-  height: 320px; }
+  height: 250px; }
 
 .demo-card-square span {
   font-size: 3em; }
@@ -9845,7 +9845,7 @@ a.button {
   padding-top: 130px; }
   .dashboard .no-exos {
     width: 100%;
-    padding-top: 30%;
+    padding-top: 50%;
     padding-left: 20px;
     padding-right: 20px;
     text-align: center; }
@@ -9853,6 +9853,17 @@ a.button {
       color: #7f7f7f;
       line-height: 140%;
       font-size: 1.5em; }
+  .dashboard .detail-exos {
+    padding: 0px 5px; }
+  .dashboard .infos-exos {
+    color: #9e9e9e;
+    margin-left: 40px; }
+  .dashboard .name-exos {
+    width: 50%; }
+  .dashboard .list-exos {
+    border-bottom: 1px solid #E2E2E2; }
+  .dashboard .delete-exos {
+    color: #e42112 !important; }
 
 .dash-stats {
   width: 100%;
@@ -9871,13 +9882,13 @@ a.button {
     text-align: center; }
 
 .dash-exos {
-  margin-top: 160px; }
+  margin-top: 80px; }
 
 /* FIN STYLE DASHBOARD PROVISOIR */
 /* BOUTON FLOTANT */
 .float-button {
   position: fixed;
-  top: 36.5%;
+  top: 171px;
   /* Adjust to where you want it */
   right: 20px;
   /* Adjust to where you want it */

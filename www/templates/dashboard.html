@@ -17,13 +17,16 @@
           <h2>Aucun exercice programmé aujourd'hui   :'(</h2>
         </div>
         <ul class="demo-list-item mdl-list">
-          <li class="mdl-list__item" ng-repeat="ex in myExercices">
+          <li class="mdl-list__item list-exos" ng-repeat="ex in myExercices">
             <span class="mdl-list__item-primary-content">
-              {{ ex.name }}
+              <span class="name-exos">{{ ex.name }}</span><div class="infos-exos"><span class="detail-exos"><b>{{ ex.series  }}</b></span>x<span class="detail-exos">{{ ex.repetition  }}</span></div>
             </span>
-            <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="validateExo(ex)">
-              <i class="material-icons">done</i>
-            </button>
+              <button class="delete-exos mdl-button mdl-js-button mdl-button--icon" ng-click="deleteExo(ex)">
+                <i class="material-icons">delete</i>
+              </button>
+              <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="validateExo(ex)">
+                <i class="material-icons">done</i>
+              </button>
           </li>
         </ul>
         <!--<div class="card" ng-repeat="ex in myExercices">

@@ -18,6 +18,10 @@ angular.module('starter.services', [])
 
         },
 
+        deleteExo: function (ex, ref, name) {
+            ref.child("exercices/" + name + "/" + ex.id).remove();
+        },
+
         /*getScore: function (ref, name) {
             ref.child("exercices/"+ name +"/score").once("value", function (snapshot) {
                 var tempscore = snapshot.val();
@@ -43,15 +47,16 @@ angular.module('starter.services', [])
 
             ref.child("exercices/"+ name +"/score").once("value", function (snapshot) {
                 var tempscore = snapshot.val();
-                var score = tempscore.score;
 
-                if (score == undefined) {
-                    score = 10;
+                if (tempscore == undefined) {
+                    var score = Math.round(ex.series * ex.repetition);
+                    console.log('ça passe');
                     ref.child("exercices/"+ name +"/score").set({
                         score: score
                     });
                 } else {
-                    score += 10;
+                    var score = tempscore.score;
+                    score += Math.round(ex.series * ex.repetition);
                     ref.child("exercices/"+ name +"/score").set({
                         score: score
                     });

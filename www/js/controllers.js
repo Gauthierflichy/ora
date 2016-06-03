@@ -257,6 +257,10 @@ angular.module('starter.controllers', [])
     DBconnect.validateExo(ex, ref, $scope.name)
   };
 
+  $scope.deleteExo = function (ex) {
+    DBconnect.deleteExo(ex, ref, $scope.name)
+  };
+
 
   $scope.new = function () {
     $state.go('app.new');
@@ -404,5 +408,9 @@ angular.module('starter.controllers', [])
       console.log("No data found..");
       $scope.exercise.image = 'https://wger.de/static/images/icons/image-placeholder.svg';
     });
-  }
+  };
+})
+
+.controller('ProfileCtrl', function ($scope, $state) {
+  //
 });
