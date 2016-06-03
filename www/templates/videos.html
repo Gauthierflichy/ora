@@ -1,25 +1,93 @@
+<div class="bar bar-subheader">
+  <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="back()" ng-hide="!hidebtn" ng-hide="hidebtn">
+    <i class="material-icons">arrow_back</i>
+  </button>
+  <h2 class="title">{{type || "Catégorie"}}</h2>
+</div>
 <ion-view view-title="Videos">
   <ion-content>
-    <div class="list card" ng-repeat="video in videos">
-      <div class="item item-image">
-        <div class="embed-responsive embed-responsive-16by9"><youtube-video class="embed-responsive-item" video-id="video.id.videoId" player-vars="playerVars"></youtube-video></div>
+    <div class="mainvideo">
+      <div class="list card" ng-repeat="video in videos" ng-hide="!hidebtn">
+
+        <div class="item item-image">
+          <div class="embed-responsive embed-responsive-16by9"><youtube-video class="embed-responsive-item" video-id="video.id.videoId" player-vars="playerVars"></youtube-video></div>
+        </div>
+        <div class="item item-text-wrap">
+          <h3>{{video.snippet.title}}</h3>
+          <p>{{video.snippet.publishedAt | limitTo: 10}}</p>
+          <div class="item item-text-wrap">
+            <h4>{{video.snippet.channelTitle}}</h4>
+          </div>
+        </div>
       </div>
-      <div class="item item-text-wrap">
-        <h2>{{video.snippet.title}}</h2>
-        <p>{{video.snippet.publishedAt | limitTo: 10}}</p>
-        <h2>{{video.snippet.channelTitle}}</h2>
-      </div>
+
+
+
+      <ul class="liste_video mdl-list">
+        <li class="mdl-list__item" id="videobtn_muscu" ng-hide="hidebtn" ng-show="hidebtn" ng-click="research('musculation, workout, exercice'); categorie('Musculation')">
+                <span class="mdl-list__item-primary-content">
+                  Musculation
+                </span>
+                <span class="mdl-list__item-secondary-action">
+                  <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                    <i class="material-icons">play_arrow</i>
+                  </label>
+                </span>
+        </li>
+        <li class="mdl-list__item" id="videobtn_fitness" ng-hide="hidebtn" ng-click="research('fitness, exercice'); categorie('Fitness')">
+                <span class="mdl-list__item-primary-content">
+                 Fitness
+                </span>
+                <span class="mdl-list__item-secondary-action">
+                  <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                    <i class="material-icons">play_arrow</i>
+                  </label>
+                </span>
+        </li>
+        <li class="mdl-list__item" id="videobtn_running" ng-hide="hidebtn" ng-click="research('running, course, exercice'); categorie('Running')">
+                <span class="mdl-list__item-primary-content">
+                  Running
+                </span>
+                <span class="mdl-list__item-secondary-action">
+                  <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                    <i class="material-icons">play_arrow</i>
+                  </label>
+                </span>
+        </li>
+        <li class="mdl-list__item" id="videobtn_bienetre" ng-hide="hidebtn" ng-click="research('bien-être, sport, exercice'); categorie('Bien-etre')">
+                <span class="mdl-list__item-primary-content">
+                  Bien-être
+                </span>
+                <span class="mdl-list__item-secondary-action">
+                  <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                    <i class="material-icons">play_arrow</i>
+                  </label>
+                </span>
+        </li>
+        <li class="mdl-list__item" id="videobtn_nutrition" ng-hide="hidebtn" ng-click="research('nutrition'); categorie('Nutrition')">
+                <span class="mdl-list__item-primary-content">
+                  Nutrition
+                </span>
+                <span class="mdl-list__item-secondary-action">
+                  <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                    <i class="material-icons">play_arrow</i>
+                  </label>
+                </span>
+        </li>
+        <li class="mdl-list__item" id="videobtn_sport" ng-hide="hidebtn" ng-click="research('streching'); categorie('Streching')"">
+                <span class="mdl-list__item-primary-content">
+                  Streching
+                </span>
+                <span class="mdl-list__item-secondary-action">
+                  <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                    <i class="material-icons">play_arrow</i>
+                  </label>
+                </span>
+        </li>
+      </ul>
+
+
+
     </div>
-
-    <ion-list class="liste_video">
-      <ion-item id="videobtn_muscu" ng-hide="hidebtn" ng-click="research('musculation, workout, exercice')">Musculation</ion-item>
-      <ion-item id="videobtn_fitness" ng-hide="hidebtn" ng-click="research('fitness, exercice')">Fitness</ion-item>
-      <ion-item id="videobtn_running" ng-hide="hidebtn" ng-click="research('running, course, exercice')">Running</ion-item>
-      <ion-item id="videobtn_bienetre" ng-hide="hidebtn" ng-click="research('bien-être, sport, exercice')">Bien-être</ion-item>
-      <ion-item id="videobtn_nutrition" ng-hide="hidebtn" ng-click="research('nutrition')">Nutrition</ion-item>
-      <ion-item id="videobtn_sport" ng-hide="hidebtn" ng-click="research('sport')">Sport</ion-item>
-    </ion-list>
-
-
   </ion-content>
 </ion-view>
