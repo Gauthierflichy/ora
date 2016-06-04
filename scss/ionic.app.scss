@@ -26,7 +26,7 @@ $stable: #387ef5;
 /* DASHBOARD CARD */
 .demo-card-square.mdl-card {
   width: 100%;
-  height: 250px;
+  height: 320px;
 }
 
 .demo-card-square span {
@@ -61,7 +61,7 @@ $stable: #387ef5;
 
   .no-exos {
     width: 100%;
-    padding-top: 50%;
+    padding-top: 30%;
     padding-left: 20px;
     padding-right: 20px;
     text-align: center;
@@ -70,27 +70,6 @@ $stable: #387ef5;
       line-height: 140%;
       font-size: 1.5em;
     }
-  }
-
-  .detail-exos {
-    padding: 0px 5px;
-  }
-
-  .infos-exos {
-    color: #9e9e9e;
-    margin-left: 40px;
-  }
-
-  .name-exos {
-    width: 50%;
-  }
-
-  .list-exos {
-    border-bottom: 1px solid #E2E2E2;
-  }
-
-  .delete-exos {
-    color: #e42112!important;
   }
 }
 
@@ -114,22 +93,36 @@ $stable: #387ef5;
   }
 }
 .dash-exos {
-  margin-top: 80px;
+  margin-top: 160px;
 }
 /* FIN STYLE DASHBOARD PROVISOIR */
 
 /* BOUTON FLOTANT */
 .float-button {
   position: fixed;
-  top: 171px; /* Adjust to where you want it */
+  top: 36.5%; /* Adjust to where you want it */
   right: 20px; /* Adjust to where you want it */
   z-index: 9999;
 }
 /* FIN BOUTON FLOTANT */
 
 
-/*LOGIN*/
+/*CONNECT*/
 
+.connect-ou {
+  height:20px;
+  padding-top: 5px;
+  margin-left: 50%;
+  h2 {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: black;
+  }
+}
+
+
+/*LOGIN*/
 input {
   display: inline-block !important;
 }
@@ -300,7 +293,7 @@ input:-webkit-autofill {
 .item-input {
 
   input {
-    border-radius: 30px !important;
+    border-radius: 4px !important;
     background-color: rgba(255, 255, 255, 0.7) !important;
     padding-left: 40px;
     height: 45px;
@@ -400,15 +393,209 @@ input:-webkit-autofill {
   color: #fff;
 }
 
+
+.titre-video {
+  h4 {
+    margin-top: -5%;
+    color: white;
+    font-size: 2.5em;
+    width:350px;
+    position: fixed;
+  }
+}
+
+.icon-back {
+  margin-top: 0;
+  position: absolute;
+}
+
+
+.liste_video {
+  margin-top: -50px;
+  li {
+    padding:26px;
+  }
+}
 /* FIN VIDEOS YOUTUBE */
 
 
+/***** NOUVEL EXO ****/
 
-
-/******* NOUVEL EXERCICE *******/
-
-#categorie {
-
+.demo-list-icon {
+  width: auto;
 }
 
-/********* FIN EXERCICE ********/
+.liste-exo {
+  border-bottom: solid 1px grey;
+  height:80px !important;
+}
+
+.image-calendar {
+  margin-left: -15px;
+}
+.exo-select {
+  right: 0;
+  border-top: 1px;
+
+  span {
+    p {
+      margin-left: 30px;
+    }
+  }
+}
+
+.nb-serie {
+  display: inline;
+}
+
+.range {
+  width:255px !important;
+}
+
+.label-date {
+  input {
+    margin-left: 30px;
+  }
+  img {
+  }
+}
+
+.button-add {
+  margin-left: 20%;
+}
+
+.button-add-single {
+  width:80%;
+}
+
+.titre-exo {
+  h4 {
+    margin-top: -5%;
+    color: white;
+    font-size: 1.8em;
+    z-index: 90;
+    width:350px;
+  }
+  p {
+    margin-top: -15px;
+    font-size: 0.8em;
+    text-align: left;
+  }
+}
+
+
+.demo-card-wide.mdl-card {
+  width: 512px;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 150px;
+  background:rgb(0, 188, 212);
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+
+.mdl-card {
+  min-height: 0 !important;
+}
+
+
+.img-exo {
+  right: 0;
+  position: fixed;
+  margin-top: 10%;
+  margin-right: 5%;
+}
+
+
+/******** FIN EXERCICE ********/
+
+
+
+//***** COMPTE **** /
+  .compte-profil {
+    height: 25%;
+    background-color: rgb(244, 67, 54);
+  }
+
+  .profil {
+    h4 {
+      text-align: center;
+      color: white;
+      line-height: 10px;
+    }
+
+    p {
+      text-align: center;
+      color: white;
+    }
+
+    img {
+      text-align: center;
+      border-radius: 50%;
+      margin-top: 10px;
+      height: 70px;
+      border:solid 1px white;
+    }
+  }
+
+.compte-infos {
+  .compte-info {
+    margin-top: 5%;
+    text-align: center;
+    vertical-align: top;
+    display: inline-block;
+    padding-left: 10%;
+
+    h2 {
+      font-size: 1em;
+      color: black;
+      height: 30px;
+    }
+
+    p {
+      font-size: 0.8em;
+    }
+
+    hr {
+      width: 50%;
+      color: rgb(255, 87, 34);
+      border: solid 1px;
+      margin-top: 5%;
+    }
+  }
+
+  .boutton-reset {
+    margin-left: 30%;
+    margin-top: 3%;
+  }
+}
+
+
+.compte-statistiques {
+  .compte-stat {
+    vertical-align: top;
+    margin-top: 5%;
+    text-align: center;
+    display: inline-block;
+    padding-left: 5%;
+
+    h2 {
+      font-size: 2em;
+      color: rgb(255, 87, 34);
+    }
+
+    p {
+      font-size: 1em;
+    }
+  }
+  .boutton-reset {
+    margin-left: 30%;
+    margin-top: 3%;
+  }
+}
+
+
+
+/**** FIN COMPTE ******/

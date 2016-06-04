@@ -1,11 +1,21 @@
-<div class="bar bar-subheader">
-  <button class="mdl-button mdl-js-button mdl-button--icon" ng-click="back()" ng-hide="!hidebtn" ng-hide="hidebtn">
-    <i class="material-icons">arrow_back</i>
-  </button>
-  <h2 class="title">{{type || "Catégorie"}}</h2>
-</div>
 <ion-view view-title="Videos">
   <ion-content>
+
+      <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+          <div class="mdl-card__title" style="background: rgb(255, 193, 7);">
+              <div class="icon-back" ng-click="back()" ng-hide="!hidebtn" ng-hide="hidebtn">
+                  <button class="mdl-button mdl-js-button mdl-button--icon">
+                      <i class="material-icons">arrow_back</i>
+                  </button>
+              </div>
+              <div class="titre-video">
+                  <h4 class="text-left">{{ type || "Catégories" }}</h4>
+              </div>
+              <img class="img-exo" src="../img/presentation.png" height="90" alt="">
+          </div>
+      </div>
+
+
     <div class="mainvideo">
       <div class="list card" ng-repeat="video in videos" ng-hide="!hidebtn">
 

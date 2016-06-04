@@ -1,75 +1,112 @@
 <ion-view view-title="Nouvel Exercice">
-  <ion-content>
-    <div class="list">
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Categorie
-        </div>
-        <select name="catagory" id="category"
-                ng-options="c.name for c in category.available track by c.id"
-                ng-model="category.selectedOption" ng-change="newSearch()">
-        </select>
-      </label>
+  <ion-content class="add-exo-container">
 
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Equipement
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title" style="background:rgb(0, 188, 212);">
+        <div class="titre-exo">
+          <h4 class="text-left">{{ e.name.name || "Aucun exercice correspondant" }}</h4>
+          <p>En cours de création</p>
         </div>
-        <select name="equipment" id="equipment"
-                ng-options="e.name for e in equipment.available track by e.id"
-                ng-model="equipment.selectedOption" ng-change="newSearch()">
-        </select>
-      </label>
-      <label ng-if="is_available == true" class="item item-input item-select">
-        <div class="input-label">
-          Exercice
-        </div>
+        <img class="img-exo" src="../img/stationary-bike.png" height="90" alt="">
+      </div>
+    </div>
 
+    <ul class="demo-list-icon mdl-list">
+
+
+
+      <li class="mdl-list__item liste-exo">
+        <span class="mdl-list__item-primary-content">
+          <img src="../img/barbell-and-plates.png" height="30" alt="">
+          &nbsp; Catégorie
+        </span>
+        <div class="exo-select">
+          <select name="catagory" id="category"
+                  ng-options="c.name for c in category.available track by c.id"
+                  ng-model="category.selectedOption" ng-change="newSearch()">
+          </select>
+        </div>
+     </li>
+
+      <li class="mdl-list__item liste-exo">
+        <span class="mdl-list__item-primary-content">
+          <img src="../img/protein-shake-and-dumbbell.png" height="30" alt="">
+          &nbsp; Équipement
+        </span>
+        <div class="exo-select">
+          <select name="equipment" id="equipment"
+                  ng-options="e.name for e in equipment.available track by e.id"
+                  ng-model="equipment.selectedOption" ng-change="newSearch()">
+          </select>
+        </div>
+      </li>
+
+
+      <li class="mdl-list__item liste-exo" ng-if="is_available == true">
+        <span class="mdl-list__item-primary-content">
+          <img src="../img/gymnast-using-gym-equipment.png" height="30" alt="">
+          &nbsp; Excercice
+        </span>
+      <div class="exo-select">
         <select name="exercise" id="exercise"
                 ng-options="ex.name for ex in exercise.available track by ex.id"
                 ng-model="e.name" ng-change="updateExo()">
         </select>
-      </label>
-    </div>
-    <div ng-if="is_available == true" class="padding">
-
-      <a class="item item-thumbnail-left" href="#">
-        <img  class="image-full" src="{{ exercise.image }}" alt="exoImg">
-        <h2>{{ e.name.name }}</h2>
-      </a>
-
-      <label class="item item-input">
-        <span class="input-label">Date</span>
-        <input type="date" ng-model="e.newDate" value="{{ date }}">
-      </label>
-
-      <div class="item range range-positive">
-        <span class="input-label">Series</span>
-        <input type="range" name="repetitions" ng-model="e.series" min="1" max="20" value="5">
-        <span>{{ e.series }}</span>
       </div>
+    </li>
 
-      <div class="item range range-positive">
-        <span class="input-label">Répétitions</span>
-        <input type="range" name="repetitions" ng-model="e.repetitions" min="5" max="50" value="15">
-        <span>{{ e.repetitions }}</span>
-      </div>
+      <li class="mdl-list__item liste-exo" ng-if="is_available == true">
+        <label class="item-input label-date">
+          <img src="../img/calendar%20(1).png" class="image-calendar" height="30" alt="">
+          &nbsp; Date
+          <input type="date" class="item-date" ng-model="e.newDate" value="{{ date }}">
+        </label>
+      </li>
 
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Fréquence
+      <li class="mdl-list__item liste-exo" ng-if="is_available == true">
+        <span class="mdl-list__item-primary-content">
+          <img src="../img/maths.png" height="30" alt="">
+          &nbsp; Séries
+        </span>
+        <div class="exo-select range range-positive">
+          <input type="range" name="repetitions" ng-model="e.series" min="1" max="20" value="5">
+          <span>{{ e.series }}</span>
         </div>
-        <select ng-model="e.frequence">
-          <option>Tous les jours</option>
-          <option selected >Une seul fois</option>
-          <option>1 fois pas semaine</option>
-        </select>
-      </label>
+      </li>
+
+      <li class="mdl-list__item liste-exo" ng-if="is_available == true">
+        <span class="mdl-list__item-primary-content">
+          <img src="../img/repeat.png" height="30" alt="">
+          &nbsp;Répétitions
+        </span>
+        <div class="exo-select range range-positive">
+          <input type="range" name="repetitions" ng-model="e.repetitions" min="1" max="20" value="0">
+          <span>{{ e.repetitions }}</span>
+        </div>
+      </li>
+
+
+      <div class="row" ng-if="is_available == true">
+        <div class="button-add col-80">
+          <button class=" col-offset-20 button-add-single
+      mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                  ng-click="addExo(e)">
+            Ajouter
+          </button>
+        </div>
+      </div>
+
+
+
+      <!-- Default Slider -->
+
+
+
+
+
     </div>
-    <div class="row">
-      <button class="button button-balanced button-full" ng-click="addExo(e)">Enregister</button>
-    </div>
-    </div>
-    <h4 ng-show="is_available == false" class="text-center">Aucun exercice correspondant</h4>
+      </ul>
+    <!-- <h4 ng-show="is_available == false" class="text-center">
+    Aucun exercice correspondant</h4> -->
   </ion-content>
 </ion-view>
