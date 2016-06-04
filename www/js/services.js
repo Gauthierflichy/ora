@@ -17,33 +17,34 @@ angular.module('starter.services', [])
             }
 
         },
-
+        
         deleteExo: function (ex, ref, name) {
             ref.child("exercices/" + name + "/" + ex.id).remove();
         },
 
-        /*getScore: function (ref, name) {
-            ref.child("exercices/"+ name +"/score").once("value", function (snapshot) {
-                var tempscore = snapshot.val();
-                var newscore = tempscore.score;
-                return newscore;
-            });
-
-        },*/
-
-
-        /*    deleteExo: function (ex, ref, name) {
-         ref.child("exercices/"+ name+"/"+ex.id).remove();
-
-
-         ref.child("exercices/"+ name).on("child_removed", function(snapshot) {
-         var deletedPost = snapshot.val();
-         console.log("The blog post titled '" + deletedPost + "' has been deleted");
-         });
-         },*/
+        reset: function (ref, name) {
+            ref.child("exercices/"+ name).remove();
+        },
 
         validateExo: function (ex, ref, name) {
             ref.child("exercices/"+ name +"/"+ex.id).remove();
+
+            ref.child("exercices/"+ name +"/finished").once("value", function (snapshot) {
+                var tempfinished = snapshot.val();
+
+                if (tempfinished == undefined) {
+                    var finished = 1;
+                    ref.child("exercices/"+ name +"/finished").set({
+                        finished: finished
+                    });
+                } else {
+                    var finished = tempfinished.finished;
+                    finished += 1;
+                    ref.child("exercices/"+ name +"/finished").set({
+                        finished: finished
+                    });
+                }
+            });
 
             ref.child("exercices/"+ name +"/score").once("value", function (snapshot) {
                 var tempscore = snapshot.val();

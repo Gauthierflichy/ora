@@ -421,6 +421,47 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ProfileCtrl', function ($scope, $state) {
-  //
+.controller('ProfileCtrl', function ($scope, $state, DBconnect) {
+  var ref = new Firebase("https://crackling-inferno-6605.firebaseio.com");
+  var authData = ref.getAuth();
+
+  $scope.name = DBconnect.getName(authData);
+
+  ref.child("exercices/" + name + "/score").on("value", function (snapshot) {
+    var tempscore = snapshot.val();
+    $scope.score = tempscore.score;
+    //$scope.$apply();
+  });
+
+  ref.child("exercices/" + name + "/finished").on("value", function (snapshot) {
+    var tempfinished = snapshot.val();
+    $scope.finished = tempfinished.finished;
+    //$scope.$apply();
+  });
+
+  ref.child("exercices/" + name).orderByChild("date").on("value", function (snapshot) {
+    var countobj = snapshot.val();
+    var count = countProperties(countobj);
+    function countProperties(countobj) {
+      var count = 0;
+
+      for(var prop in countobj) {
+        if(countobj.hasOwnProperty(prop))
+          ++count;
+      }
+
+      return count - 2;
+    }
+    if (count < 0){
+      $scope.count = 0;
+    } else {
+      $scope.count = count;
+    }
+
+  });
+
+  $scope.reset = function () {
+    DBconnect.reset(ref, $scope.name);
+  }
+  
 });

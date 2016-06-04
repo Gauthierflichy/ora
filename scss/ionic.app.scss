@@ -26,7 +26,7 @@ $stable: #387ef5;
 /* DASHBOARD CARD */
 .demo-card-square.mdl-card {
   width: 100%;
-  height: 320px;
+  height: 250px;
 }
 
 .demo-card-square span {
@@ -93,14 +93,14 @@ $stable: #387ef5;
   }
 }
 .dash-exos {
-  margin-top: 160px;
+  margin-top: 80px;
 }
 /* FIN STYLE DASHBOARD PROVISOIR */
 
 /* BOUTON FLOTANT */
 .float-button {
   position: fixed;
-  top: 36.5%; /* Adjust to where you want it */
+  top: 171px; /* Adjust to where you want it */
   right: 20px; /* Adjust to where you want it */
   z-index: 9999;
 }
@@ -425,9 +425,13 @@ input:-webkit-autofill {
   width: auto;
 }
 
-.liste-exo {
-  border-bottom: solid 1px grey;
-  height:80px !important;
+.list-exos {
+  border-bottom: solid 1px #E0D1D1;
+  height: 70px !important;
+}
+
+.infos-exos {
+  margin-left: 10px;
 }
 
 .image-calendar {
