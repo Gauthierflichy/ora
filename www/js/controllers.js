@@ -17,38 +17,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('loginCtrl', function($scope, $state, $ionicModal){
-
   $scope.isSomethingLoading = false;
-  $scope.loginfb = function () {
-    /*var provider = new firebase.auth.FacebookAuthProvider();
-     firebase.auth().signInWithPopup(provider).then(function(result) {
-     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-     var token = result.credential.accessToken;
-     // The signed-in user info.
-     var user = result.user;
-     // ...
-     }).catch(function(error) {
-     // Handle Errors here.
-     var errorCode = error.code;
-     var errorMessage = error.message;
-     // The email of the user's account used.
-     var email = error.email;
-     // The firebase.auth.AuthCredential type that was used.
-     var credential = error.credential;
-     // ...
-     });
-     */
-
-    var ref = new Firebase("https://crackling-inferno-6605.firebaseio.com");
-    ref.authWithOAuthPopup("facebook", function(error, authData) {
-      if (error) {
-        console.log("Authentication Failed!", error);
-      } else {
-        console.log("Authenticated successfully with payload:", authData);
-        $state.go('app.dashboard');
-      }
-    });
-  };
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -93,6 +62,43 @@ angular.module('starter.controllers', [])
         console.log("Successfully created user account with uid:", userData.uid);
         $scope.modal2.hide();
         $state.go('app.dashboard');
+      }
+    });
+  };
+
+  $scope.fbLogin = function () {
+    var isNewUser = true;
+    var ref = new Firebase("https://crackling-inferno-6605.firebaseio.com");
+    ref.authWithOAuthPopup("facebook", function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Authenticated successfully with payload:", authData);
+        $scope.modal.hide();
+        $state.go('app.dashboard');
+      }
+    });
+
+    ref.onAuth(function(authData) {
+      if (authData && isNewUser) {
+        // save the user's profile into the database so we can list users,
+        // use them in Security and Firebase Rules, and show profiles
+        ref.child("users").child(authData.uid).set({
+          provider: authData.provider,
+          name: getName(authData)
+        });
+
+        function getName(authData) {
+          switch(authData.provider) {
+            case 'password':
+              return authData.password.email.replace(/@.*/, '').replace(/\./g, "");
+            case 'twitter':
+              return authData.twitter.displayName;
+            case 'facebook':
+              return authData.facebook.displayName;
+              console.log('c ici');
+          }
+        }
       }
     });
   };
@@ -150,7 +156,6 @@ angular.module('starter.controllers', [])
 
       });
     }
-
     ref.onAuth(function(authData) {
       if (authData && isNewUser) {
         // save the user's profile into the database so we can list users,
@@ -173,6 +178,8 @@ angular.module('starter.controllers', [])
       }
     });
   };
+
+
 })
 
 .controller('VideosCtrl', function($scope, $http){
@@ -230,38 +237,40 @@ angular.module('starter.controllers', [])
   var date = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
   $scope.isloading = true;
 
-  ionic.Platform.ready(function() {
-    if (authData) {
-      $scope.name = DBconnect.getName(authData);
-      ref.child("exercices/" + name).orderByChild("date").equalTo(date.toJSON()).on("value", function (snapshot) {
-        //console.log(snapshot.val());
-        $scope.myExercices = snapshot.val();
+  if (authData) {
+    $scope.name = DBconnect.getName(authData);
+    ref.child("exercices/" + name).orderByChild("date").equalTo(date.toJSON()).on("value", function (snapshot) {
+      //console.log(snapshot.val());
+      $scope.myExercices = snapshot.val();
 
-        if ($scope.myExercices == null) {
-          $scope.noExos = true;
-        } else {
-          $scope.noExos = false;
-          //$scope.$apply();
-        }
-        $scope.isloading = false;
+      if ($scope.myExercices == null) {
+        $scope.noExos = true;
+      } else {
+        $scope.noExos = false;
         //$scope.$apply();
+      }
+      $scope.isloading = false;
+      //$scope.$apply();
 
-        ref.child("exercices/" + name + "/score").on("value", function (snapshot) {
-          var tempscore = snapshot.val();
+      ref.child("exercices/" + name + "/score").on("value", function (snapshot) {
+        var tempscore = snapshot.val();
+        if(tempscore == undefined){
+          //console.log('score null');
+        } else {
           $scope.score = tempscore.score;
           //$scope.$apply();
-        });
-        $ionicHistory.clearCache();
-        $state.go('app.dashboard');
-      }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
+        }
       });
+      $ionicHistory.clearCache();
+      $state.go('app.dashboard');
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
 
-    } else {
-      ref.unauth();
-      $state.go('login');
-    }
-  });
+  } else {
+    ref.unauth();
+    $state.go('login');
+  }
 
   $scope.validateExo = function (ex) {
     DBconnect.validateExo(ex, ref, $scope.name)
@@ -421,47 +430,52 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ProfileCtrl', function ($scope, $state, DBconnect) {
+.controller('ProfileCtrl', function ($scope, $state, $ionicHistory, DBconnect) {
   var ref = new Firebase("https://crackling-inferno-6605.firebaseio.com");
   var authData = ref.getAuth();
 
   $scope.name = DBconnect.getName(authData);
 
-  ref.child("exercices/" + name + "/score").on("value", function (snapshot) {
-    var tempscore = snapshot.val();
-    $scope.score = tempscore.score;
-    //$scope.$apply();
-  });
-
-  ref.child("exercices/" + name + "/finished").on("value", function (snapshot) {
-    var tempfinished = snapshot.val();
-    $scope.finished = tempfinished.finished;
-    //$scope.$apply();
-  });
-
-  ref.child("exercices/" + name).orderByChild("date").on("value", function (snapshot) {
-    var countobj = snapshot.val();
-    var count = countProperties(countobj);
-    function countProperties(countobj) {
-      var count = 0;
-
-      for(var prop in countobj) {
-        if(countobj.hasOwnProperty(prop))
-          ++count;
-      }
-
-      return count - 2;
-    }
-    if (count < 0){
-      $scope.count = 0;
-    } else {
-      $scope.count = count;
-    }
-
+  $ionicHistory.nextViewOptions({
+    disableBack: true
   });
 
   $scope.reset = function () {
     DBconnect.reset(ref, $scope.name);
-  }
+    $state.go('app.dashboard');
+  };
+
+  ref.child("exercices/" + name + "/score").on("value", function (snapshot) {
+    var tempscore = snapshot.val();
+    if (tempscore == undefined){
+      //console.log('score null');
+    } else {
+      $scope.score = tempscore.score;
+    }
+    ref.child("exercices/" + name + "/finished").on("value", function (snapshot) {
+      var tempfinished = snapshot.val();
+      if(tempfinished == undefined){
+        //console.log('finished null')
+      } else {
+        $scope.finished = tempfinished.finished;
+      }
+      ref.child("exercices/" + name + "/current").on("value", function (snapshot) {
+        var tempcurrent = snapshot.val();
+        if(tempcurrent == undefined){
+          //console.log('current null')
+        } else {
+          $scope.current = tempcurrent.current;
+          //console.log($scope.current);
+        }
+
+        /*$ionicHistory.clearCache();
+        $state.go('app.profile');*/
+
+      });
+    });
+  });
+
+
+
   
 });

@@ -20,6 +20,16 @@ angular.module('starter.services', [])
         
         deleteExo: function (ex, ref, name) {
             ref.child("exercices/" + name + "/" + ex.id).remove();
+
+            ref.child("exercices/"+ name +"/current").once("value", function (snapshot) {
+                var tempcurrent = snapshot.val();
+                var current = tempcurrent.current;
+                current -= 1;
+
+                ref.child("exercices/"+ name +"/current").set({
+                    current: current
+                });
+            });
         },
 
         reset: function (ref, name) {
@@ -51,7 +61,6 @@ angular.module('starter.services', [])
 
                 if (tempscore == undefined) {
                     var score = Math.round(ex.series * ex.repetition);
-                    console.log('ça passe');
                     ref.child("exercices/"+ name +"/score").set({
                         score: score
                     });
@@ -60,6 +69,23 @@ angular.module('starter.services', [])
                     score += Math.round(ex.series * ex.repetition);
                     ref.child("exercices/"+ name +"/score").set({
                         score: score
+                    });
+                }
+            });
+
+            ref.child("exercices/"+ name +"/current").once("value", function (snapshot) {
+                var tempcurrent = snapshot.val();
+
+                if (tempcurrent == undefined) {
+                    var current = 0;
+                    ref.child("exercices/"+ name +"/current").set({
+                        current: current
+                    });
+                } else {
+                    var current = tempcurrent.current;
+                    current -= 1;
+                    ref.child("exercices/"+ name +"/current").set({
+                        current: current
                     });
                 }
             });
@@ -79,6 +105,21 @@ angular.module('starter.services', [])
 
             ref.child("exercices/"+name+"/"+exoID).update({
                 id:  exoID
+            });
+
+            ref.child("exercices/"+ name +"/current").once("value", function (snapshot) {
+                var tempcurrent = snapshot.val();
+
+                if (tempcurrent == undefined) {
+                    var current = 1;
+                } else {
+                    var current = tempcurrent.current;
+                    current += 1;
+                }
+
+                ref.child("exercices/"+ name +"/current").set({
+                    current: current
+                });
             });
 
             //console.log(exoID);

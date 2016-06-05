@@ -23,7 +23,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   function authDataCallback(authData) {
     if (authData) {
-      console.log("User " + authData.password.email.replace(/@.*/, '') + " is logged in with " + authData.provider);
+      //console.log("User " + authData.password.email.replace(/@.*/, '') + " is logged in with " + authData.provider);
       $state.go('app.dashboard');
     } else {
       console.log("User is logged out");
@@ -77,6 +77,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
 
   .state('app.profile', {
+    cache: false,
     url: '/profile',
     views: {
       'menuContent': {
