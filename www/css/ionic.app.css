@@ -10115,6 +10115,9 @@ input:-webkit-autofill {
 .infos-exos {
   margin-left: 10px; }
 
+.name-exos {
+  width: 75%; }
+
 .image-calendar {
   margin-left: -15px; }
 
@@ -10187,10 +10190,8 @@ input:-webkit-autofill {
 
 .profil img {
   text-align: center;
-  border-radius: 50%;
   margin-top: 10px;
-  height: 70px;
-  border: solid 1px white; }
+  height: 70px; }
 
 .compte-infos .compte-info {
   margin-top: 5%;

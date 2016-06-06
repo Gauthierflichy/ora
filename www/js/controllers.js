@@ -65,6 +65,81 @@ angular.module('starter.controllers', [])
       }
     });
   };
+  
+  $scope.gLogin = function () {
+    var isNewUser = true;
+    var ref = new Firebase("https://crackling-inferno-6605.firebaseio.com");
+    ref.authWithOAuthPopup("google", function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Authenticated successfully with payload:", authData);
+        $scope.modal.hide();
+        $state.go('app.dashboard');
+      }
+    });
+
+    ref.onAuth(function(authData) {
+      if (authData && isNewUser) {
+        // save the user's profile into the database so we can list users,
+        // use them in Security and Firebase Rules, and show profiles
+        ref.child("users").child(authData.uid).set({
+          provider: authData.provider,
+          name: getName(authData)
+        });
+
+        function getName(authData) {
+          switch(authData.provider) {
+            case 'password':
+              return authData.password.email.replace(/@.*/, '').replace(/\./g, "");
+            case 'twitter':
+              return authData.twitter.displayName;
+            case 'facebook':
+              return authData.facebook.displayName;
+          }
+        }
+      }
+    });
+
+  };
+
+  $scope.twLogin = function () {
+    var isNewUser = true;
+    var ref = new Firebase("https://crackling-inferno-6605.firebaseio.com");
+    ref.authWithOAuthPopup("twitter", function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Authenticated successfully with payload:", authData);
+        $scope.modal.hide();
+        $state.go('app.dashboard');
+      }
+    });
+
+    ref.onAuth(function(authData) {
+      if (authData && isNewUser) {
+        // save the user's profile into the database so we can list users,
+        // use them in Security and Firebase Rules, and show profiles
+        ref.child("users").child(authData.uid).set({
+          provider: authData.provider,
+          name: getName(authData)
+        });
+
+        function getName(authData) {
+          switch(authData.provider) {
+            case 'password':
+              return authData.password.email.replace(/@.*/, '').replace(/\./g, "");
+            case 'twitter':
+              return authData.twitter.displayName;
+            case 'facebook':
+              return authData.facebook.displayName;
+              console.log('c ici');
+          }
+        }
+      }
+    });
+
+  };
 
   $scope.fbLogin = function () {
     var isNewUser = true;
@@ -258,7 +333,7 @@ angular.module('starter.controllers', [])
           //console.log('score null');
         } else {
           $scope.score = tempscore.score;
-          //$scope.$apply();
+          $//scope.$apply();
         }
       });
       $ionicHistory.clearCache();
@@ -266,6 +341,9 @@ angular.module('starter.controllers', [])
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
+
+    $ionicHistory.clearCache();
+     $state.go('app.dashboard');
 
   } else {
     ref.unauth();
@@ -286,6 +364,7 @@ angular.module('starter.controllers', [])
   };
 
 })
+
 
 .controller('NewCtrl', function($scope, $http, $state, $ionicHistory, DBconnect) {
   var ref = new Firebase("https://crackling-inferno-6605.firebaseio.com");
