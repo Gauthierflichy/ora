@@ -435,6 +435,10 @@ input:-webkit-autofill {
   margin-left: 10px;
 }
 
+.name-exos {
+  width: 75%;
+}
+
 .image-calendar {
   margin-left: -15px;
 }
@@ -538,10 +542,10 @@ input:-webkit-autofill {
 
     img {
       text-align: center;
-      border-radius: 50%;
+      //border-radius: 50%;
       margin-top: 10px;
       height: 70px;
-      border:solid 1px white;
+      //border:solid 1px white;
     }
   }
 
