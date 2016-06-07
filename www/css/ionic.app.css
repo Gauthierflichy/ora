@@ -9893,18 +9893,19 @@ a.button {
     text-align: center;
     font-size: 2em;
     font-weight: bold;
-    color: black; }
+    color: white; }
 
 /*LOGIN*/
 input {
   display: inline-block !important; }
 
 .login-content {
-  background-image: url("../img/Trail-Running.jpg");
+  background-image: url("../img/Michelle-Bridges-Intense-Full-Body-Workout.jpg");
+  background-position: right;
   background-size: cover; }
 
 .login-container {
-  margin-top: 50%;
+  margin-top: 60%;
   margin-left: 25%; }
   .login-container button {
     margin-top: 33%;
@@ -10231,3 +10232,20 @@ input:-webkit-autofill {
   margin-top: 3%; }
 
 /**** FIN COMPTE ******/
+/***** MENU *****/
+.profil-menu {
+  height: 20%;
+  background-color: #387ef5; }
+  .profil-menu h4 {
+    text-align: center;
+    line-height: 10px;
+    color: white; }
+  .profil-menu p {
+    text-align: center; }
+
+.icon-profil-menu {
+  text-align: center; }
+  .icon-profil-menu img {
+    border-radius: 50%;
+    width: 25%;
+    margin-top: 5%; }

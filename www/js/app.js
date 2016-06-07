@@ -96,6 +96,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
+      .state('app.mentions', {
+        url: '/mentions',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/mentions.html'
+          }
+        }
+      })
+
   .state('login', {
     url: '/login',
     templateUrl: 'templates/connect.html',
