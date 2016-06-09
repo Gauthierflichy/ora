@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $state) {
+.controller('AppCtrl', function($scope, $state, DBconnect) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -9,6 +9,17 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
   var ref = new Firebase("https://crackling-inferno-6605.firebaseio.com");
+  var authData = ref.getAuth();
+
+  if (authData){
+    $scope.name = DBconnect.getName(authData, ref);
+  }else {
+    ref.unauth();
+    $state.go('login');
+  }
+
+  $scope.name = DBconnect.getName(authData);
+
   $scope.logout = function () {
     ref.unauth();
     $state.go('login');
@@ -312,43 +323,45 @@ angular.module('starter.controllers', [])
   var date = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
   $scope.isloading = true;
 
-  if (authData) {
-    $scope.name = DBconnect.getName(authData);
-    ref.child("exercices/" + name).orderByChild("date").equalTo(date.toJSON()).on("value", function (snapshot) {
-      //console.log(snapshot.val());
-      $scope.myExercices = snapshot.val();
-
-      if ($scope.myExercices == null) {
-        $scope.noExos = true;
-      } else {
-        $scope.noExos = false;
-        //$scope.$apply();
-      }
-      $scope.isloading = false;
-      //$scope.$apply();
-
-      ref.child("exercices/" + name + "/score").on("value", function (snapshot) {
-        var tempscore = snapshot.val();
-        if(tempscore == undefined){
-          //console.log('score null');
-        } else {
-          $scope.score = tempscore.score;
-          $//scope.$apply();
-        }
-      });
-      $ionicHistory.clearCache();
-      $state.go('app.dashboard');
-    }, function (errorObject) {
-      console.log("The read failed: " + errorObject.code);
-    });
-
-    $ionicHistory.clearCache();
-     $state.go('app.dashboard');
-
-  } else {
+  if (authData){
+    $scope.name = DBconnect.getName(authData, ref);
+  }else {
     ref.unauth();
     $state.go('login');
   }
+
+  $scope.name = DBconnect.getName(authData);
+  ref.child("exercices/" + name).orderByChild("date").equalTo(date.toJSON()).on("value", function (snapshot) {
+    //console.log(snapshot.val());
+    $scope.myExercices = snapshot.val();
+
+    if ($scope.myExercices == null) {
+      $scope.noExos = true;
+    } else {
+      $scope.noExos = false;
+      //$scope.$apply();
+    }
+    $scope.isloading = false;
+    //$scope.$apply();
+
+    ref.child("exercices/" + name + "/score").on("value", function (snapshot) {
+      var tempscore = snapshot.val();
+      if(tempscore == undefined){
+        //console.log('score null');
+      } else {
+        $scope.score = tempscore.score;
+        $//scope.$apply();
+      }
+    });
+    $ionicHistory.clearCache();
+    $state.go('app.dashboard');
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+  $ionicHistory.clearCache();
+  $state.go('app.dashboard');
+
 
   $scope.validateExo = function (ex) {
     DBconnect.validateExo(ex, ref, $scope.name)

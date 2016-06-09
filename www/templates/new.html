@@ -7,21 +7,18 @@
           <h4 class="text-left">{{ e.name.name || "Aucun exercice correspondant" }}</h4>
           <p>En cours de création</p>
         </div>
-        <img class="img-exo" src="../img/stationary-bike.png" height="90" alt="">
+        <img class="img-exo" src="img/stationary-bike.png" height="90" alt="">
       </div>
     </div>
 
     <ul class="demo-list-icon mdl-list">
-
-
-
       <li class="mdl-list__item liste-exo">
         <span class="mdl-list__item-primary-content">
-          <img src="../img/barbell-and-plates.png" height="30" alt="">
+          <img src="img/barbell-and-plates.png" height="30" alt="">
           &nbsp; Catégorie
         </span>
         <div class="exo-select">
-          <select name="catagory" id="category"
+          <select class="item item-input item-select" name="catagory" id="category"
                   ng-options="c.name for c in category.available track by c.id"
                   ng-model="category.selectedOption" ng-change="newSearch()">
           </select>
@@ -30,11 +27,11 @@
 
       <li class="mdl-list__item liste-exo">
         <span class="mdl-list__item-primary-content">
-          <img src="../img/protein-shake-and-dumbbell.png" height="30" alt="">
+          <img src="img/protein-shake-and-dumbbell.png" height="30" alt="">
           &nbsp; Équipement
         </span>
         <div class="exo-select">
-          <select name="equipment" id="equipment"
+          <select class="item item-input item-select" name="equipment" id="equipment"
                   ng-options="e.name for e in equipment.available track by e.id"
                   ng-model="equipment.selectedOption" ng-change="newSearch()">
           </select>
@@ -44,11 +41,11 @@
 
       <li class="mdl-list__item liste-exo" ng-if="is_available == true">
         <span class="mdl-list__item-primary-content">
-          <img src="../img/gymnast-using-gym-equipment.png" height="30" alt="">
+          <img src="img/gymnast-using-gym-equipment.png" height="30" alt="">
           &nbsp; Excercice
         </span>
       <div class="exo-select">
-        <select name="exercise" id="exercise"
+        <select class="item item-input item-select" name="exercise" id="exercise"
                 ng-options="ex.name for ex in exercise.available track by ex.id"
                 ng-model="e.name" ng-change="updateExo()">
         </select>
@@ -57,7 +54,7 @@
 
       <li class="mdl-list__item liste-exo" ng-if="is_available == true">
         <label class="item-input label-date">
-          <img src="../img/calendar%20(1).png" class="image-calendar" height="30" alt="">
+          <img src="img/calendar%20(1).png" class="image-calendar" height="30" alt="">
           &nbsp; Date
           <input type="date" class="item-date" ng-model="e.newDate" value="{{ date }}">
         </label>
@@ -65,7 +62,7 @@
 
       <li class="mdl-list__item liste-exo" ng-if="is_available == true">
         <span class="mdl-list__item-primary-content">
-          <img src="../img/maths.png" height="30" alt="">
+          <img src="img/maths.png" height="30" alt="">
           &nbsp; Séries
         </span>
         <div class="exo-select range range-positive">
@@ -76,7 +73,7 @@
 
       <li class="mdl-list__item liste-exo" ng-if="is_available == true">
         <span class="mdl-list__item-primary-content">
-          <img src="../img/repeat.png" height="30" alt="">
+          <img src="img/repeat.png" height="30" alt="">
           &nbsp;Répétitions
         </span>
         <div class="exo-select range range-positive">

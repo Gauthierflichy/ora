@@ -10078,7 +10078,7 @@ input:-webkit-autofill {
   padding-top: 6vh; }
 
 .demo-card-wide.mdl-card {
-  width: 512px; }
+  width: 100%; }
 
 .demo-card-wide > .mdl-card__title {
   color: #fff;
@@ -10156,7 +10156,7 @@ input:-webkit-autofill {
   text-align: left; }
 
 .demo-card-wide.mdl-card {
-  width: 512px; }
+  width: 100%; }
 
 .demo-card-wide > .mdl-card__title {
   color: #fff;
