@@ -380,6 +380,17 @@ input:-webkit-autofill {
 
 .mainvideo{
   padding-top:6vh;
+  .item-text-wrap{
+    h3{
+      line-height: 17px;
+    }
+    h4{
+      font-size: 1.1em;
+      font-weight: 400;
+      color:#FF5252;
+      text-transform: uppercase;
+    }
+  }
 }
 
 .demo-card-wide.mdl-card {

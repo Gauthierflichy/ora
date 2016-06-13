@@ -10076,6 +10076,13 @@ input:-webkit-autofill {
 
 .mainvideo {
   padding-top: 6vh; }
+  .mainvideo .item-text-wrap h3 {
+    line-height: 17px; }
+  .mainvideo .item-text-wrap h4 {
+    font-size: 1.1em;
+    font-weight: 400;
+    color: #FF5252;
+    text-transform: uppercase; }
 
 .demo-card-wide.mdl-card {
   width: 100%; }

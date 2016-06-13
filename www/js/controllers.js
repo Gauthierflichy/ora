@@ -291,14 +291,14 @@ angular.module('starter.controllers', [])
         $scope.youtubeParams = {
           key: 'AIzaSyDK9o9agLRbyMysXeUaR1NMRAuM7393vD4',
           type: 'video',
-          maxResults: '3',
+          maxResults: 10,
           part: 'id,snippet',
           q: keyword,
           order: 'relevance',
           rating:'like',
           safeSearch:'strict',
           videoDuration:'medium',
-          publishedAfter:'2016-05-01T00:00:00Z'
+          publishedAfter:'2016-05-04T00:00:00Z'
         };
 
         $http.get('https://www.googleapis.com/youtube/v3/search', {params:$scope.youtubeParams}).success(function(response){
