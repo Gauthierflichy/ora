@@ -16,11 +16,9 @@
             </h2>
           </div>
 
-
           <label class="item-input item-floating-label">
             <input type="email" ng-model="user.email" placeholder="Email">
           </label>
-
 
 
           <label class="item-input item-floating-label">
@@ -28,16 +26,10 @@
           </label>
 
           <div class="login-social">
+            <img src="img/facebook-logo.png"  height="40" alt="" ng-click="fbLogin()">
 
-            <img src="../img/facebook-logo.png" height="40" alt="">
-
-
-            <img src="../img/google-plus-logo.png" height="40" alt="">
-
-
-            <img src="../img/twitter-logo.png" height="40" alt="">
+            <img src="img/twitter-logo.png" height="40" alt="" ng-click="twLogin()">
           </div>
-
 
           <div class="bouton-connecter">
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" ng-click="register(user)">
@@ -45,25 +37,9 @@
             </button>
           </div>
 
-
-          <!--
-                  <input type="button" class="button button-full button-assertive" value="Se connecter" ng-click="login(user)">
-          -->
-
           <div class="login-dejacompte">
-            <p>Déjà un compte ? <a href="#/login">Connexion</a></p>
+            <p>Déjà un compte ? <a ng-click="loginCancel()">Connexion</a></p>
           </div>
-
-
-
-          <!--
-                  <a ng-click="loginfb()" class="btn btn-block btn-social btn-twitter">
-                      <span class="fa fa-twitter"></span>
-                      Sign in with Twitter
-                  </a>
-
-          -->
-
 
         </div>
 

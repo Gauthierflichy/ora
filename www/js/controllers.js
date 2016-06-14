@@ -37,6 +37,7 @@ angular.module('starter.controllers', [])
     $scope.modal = modal;
   });
 
+
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/register.html', {
     scope: $scope
@@ -59,7 +60,18 @@ angular.module('starter.controllers', [])
     $scope.modal2.show();
   };
 
+  $scope.loginCancel = function () {
+    $scope.modal2.hide();
+    $state.go('login');
+  };
+
+  $scope.registerCancel = function () {
+    $scope.modal.hide();
+    $state.go('login');
+  };
+
   $scope.register = function(user) {
+    var isNewUser = true;
     var ref = new Firebase("https://crackling-inferno-6605.firebaseio.com");
     ref.createUser({
       email    : user.email,
@@ -71,47 +83,32 @@ angular.module('starter.controllers', [])
         $state.go('login');
       } else {
         console.log("Successfully created user account with uid:", userData.uid);
-        $scope.modal2.hide();
-        $state.go('app.dashboard');
-      }
-    });
-  };
-  
-  $scope.gLogin = function () {
-    var isNewUser = true;
-    var ref = new Firebase("https://crackling-inferno-6605.firebaseio.com");
-    ref.authWithOAuthPopup("google", function(error, authData) {
-      if (error) {
-        console.log("Login Failed!", error);
-      } else {
-        console.log("Authenticated successfully with payload:", authData);
-        $scope.modal.hide();
-        $state.go('app.dashboard');
-      }
-    });
 
-    ref.onAuth(function(authData) {
-      if (authData && isNewUser) {
-        // save the user's profile into the database so we can list users,
-        // use them in Security and Firebase Rules, and show profiles
-        ref.child("users").child(authData.uid).set({
-          provider: authData.provider,
-          name: getName(authData)
-        });
+        ref.onAuth(function(authData) {
+          if (authData && isNewUser) {
+            $scope.modal2.hide();
+            $state.go('app.dashboard');
+            // save the user's profile into the database so we can list users,
+            // use them in Security and Firebase Rules, and show profiles
+            ref.child("users").child(authData.uid).set({
+              provider: authData.provider,
+              name: getName(authData)
+            });
 
-        function getName(authData) {
-          switch(authData.provider) {
-            case 'password':
-              return authData.password.email.replace(/@.*/, '').replace(/\./g, "");
-            case 'twitter':
-              return authData.twitter.displayName;
-            case 'facebook':
-              return authData.facebook.displayName;
+            function getName(authData) {
+              switch(authData.provider) {
+                case 'password':
+                  return authData.password.email.replace(/@.*/, '').replace(/\./g, "");
+                case 'twitter':
+                  return authData.twitter.displayName;
+                case 'facebook':
+                  return authData.facebook.displayName;
+              }
+            }
           }
-        }
+        });
       }
     });
-
   };
 
   $scope.twLogin = function () {
@@ -122,33 +119,35 @@ angular.module('starter.controllers', [])
         console.log("Login Failed!", error);
       } else {
         console.log("Authenticated successfully with payload:", authData);
-        $scope.modal.hide();
-        $state.go('app.dashboard');
-      }
-    });
 
-    ref.onAuth(function(authData) {
-      if (authData && isNewUser) {
-        // save the user's profile into the database so we can list users,
-        // use them in Security and Firebase Rules, and show profiles
-        ref.child("users").child(authData.uid).set({
-          provider: authData.provider,
-          name: getName(authData)
-        });
+        ref.onAuth(function(authData) {
+          if (authData && isNewUser) {
+            $scope.modal.hide();
+            $scope.modal2.hide();
+            $state.go('app.dashboard');
+            // save the user's profile into the database so we can list users,
+            // use them in Security and Firebase Rules, and show profiles
+            ref.child("users").child(authData.uid).set({
+              provider: authData.provider,
+              name: getName(authData)
+            });
 
-        function getName(authData) {
-          switch(authData.provider) {
-            case 'password':
-              return authData.password.email.replace(/@.*/, '').replace(/\./g, "");
-            case 'twitter':
-              return authData.twitter.displayName;
-            case 'facebook':
-              return authData.facebook.displayName;
-              console.log('c ici');
+            function getName(authData) {
+              switch(authData.provider) {
+                case 'password':
+                  return authData.password.email.replace(/@.*/, '').replace(/\./g, "");
+                case 'twitter':
+                  return authData.twitter.displayName;
+                case 'facebook':
+                  return authData.facebook.displayName;
+                  console.log('c ici');
+              }
+            }
           }
-        }
+        });
       }
     });
+
 
   };
 
@@ -160,33 +159,34 @@ angular.module('starter.controllers', [])
         console.log("Login Failed!", error);
       } else {
         console.log("Authenticated successfully with payload:", authData);
-        $scope.modal.hide();
-        $state.go('app.dashboard');
-      }
-    });
+        ref.onAuth(function(authData) {
+          if (authData && isNewUser) {
+            $scope.modal.hide();
+            $scope.modal2.hide();
+            $state.go('app.dashboard');
+            // save the user's profile into the database so we can list users,
+            // use them in Security and Firebase Rules, and show profiles
+            ref.child("users").child(authData.uid).set({
+              provider: authData.provider,
+              name: getName(authData)
+            });
 
-    ref.onAuth(function(authData) {
-      if (authData && isNewUser) {
-        // save the user's profile into the database so we can list users,
-        // use them in Security and Firebase Rules, and show profiles
-        ref.child("users").child(authData.uid).set({
-          provider: authData.provider,
-          name: getName(authData)
-        });
-
-        function getName(authData) {
-          switch(authData.provider) {
-            case 'password':
-              return authData.password.email.replace(/@.*/, '').replace(/\./g, "");
-            case 'twitter':
-              return authData.twitter.displayName;
-            case 'facebook':
-              return authData.facebook.displayName;
-              console.log('c ici');
+            function getName(authData) {
+              switch(authData.provider) {
+                case 'password':
+                  return authData.password.email.replace(/@.*/, '').replace(/\./g, "");
+                case 'twitter':
+                  return authData.twitter.displayName;
+                case 'facebook':
+                  return authData.facebook.displayName;
+                  console.log('c ici');
+              }
+            }
           }
-        }
+        });
       }
     });
+
   };
 
   $scope.login = function(user) {
@@ -195,7 +195,7 @@ angular.module('starter.controllers', [])
 
     if (user === undefined) {
       $scope.error = 'Veuillez renseigner tous les champs';
-      $scope.modal.hide();
+      //$scope.modal.hide();
       $state.go('login');
     } else {
       $scope.isSomethingLoading = true;
@@ -234,35 +234,36 @@ angular.module('starter.controllers', [])
         } else {
           console.log("Authenticated successfully with payload:", authData);
           $scope.isSomethingLoading = false;
-          $scope.modal.hide();
-          $state.go('app.dashboard');
+
+          ref.onAuth(function(authData) {
+            if (authData && isNewUser) {
+              $scope.modal.hide();
+              $state.go('app.dashboard');
+              // save the user's profile into the database so we can list users,
+              // use them in Security and Firebase Rules, and show profiles
+              ref.child("users").child(authData.uid).set({
+                provider: authData.provider,
+                name: getName(authData)
+              });
+
+              function getName(authData) {
+                switch(authData.provider) {
+                  case 'password':
+                    return authData.password.email.replace(/@.*/, '').replace(/\./g, "");
+                  case 'twitter':
+                    return authData.twitter.displayName;
+                  case 'facebook':
+                    return authData.facebook.displayName;
+                }
+              }
+            }
+          });
         }
 
         $scope.$apply();
 
       });
     }
-    ref.onAuth(function(authData) {
-      if (authData && isNewUser) {
-        // save the user's profile into the database so we can list users,
-        // use them in Security and Firebase Rules, and show profiles
-        ref.child("users").child(authData.uid).set({
-          provider: authData.provider,
-          name: getName(authData)
-        });
-
-        function getName(authData) {
-          switch(authData.provider) {
-            case 'password':
-              return authData.password.email.replace(/@.*/, '').replace(/\./g, "");
-            case 'twitter':
-              return authData.twitter.displayName;
-            case 'facebook':
-              return authData.facebook.displayName;
-          }
-        }
-      }
-    });
   };
 
 
@@ -277,7 +278,7 @@ angular.module('starter.controllers', [])
       $scope.back = function (){
         $scope.hidebtn =false;
         $scope.type="Catégories";
-      }
+      };
 
 
       $scope.hidebtn=false;//Pour cacher les boutons sur la page de vidéos

@@ -1,10 +1,7 @@
 <ion-modal-view>
-  <ion-content scroll="false" class="login-modal">
-    <ion-modal-view class="text-center ">
+  <ion-content scroll="false" class="login-modal text-center">
       <div class="error-infos" ng-if="error != undefined">
       </div>
-
-      <ion-content class="text-center">
 
         <h2>CONNEXION</h2>
 
@@ -16,11 +13,9 @@
             </h2>
           </div>
 
-
           <label class="item-input item-floating-label">
             <input type="email" ng-model="user.email" placeholder="Email">
           </label>
-
 
 
           <label class="item-input item-floating-label">
@@ -30,41 +25,19 @@
           <div class="login-social">
             <img src="img/facebook-logo.png"  height="40" alt="" ng-click="fbLogin()">
 
-
-            <!--<img src="../img/google-plus-logo.png" height="40" alt="" ng-click="gLogin()">-->
-
-
             <img src="img/twitter-logo.png" height="40" alt="" ng-click="twLogin()">
           </div>
 
 
-    <div class="bouton-connecter">
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" ng-click="login(user)">
-        Se connecter
-      </button>
-    </div>
-
-
-          <!--
-                  <input type="button" class="button button-full button-assertive" value="Se connecter" ng-click="login(user)">
-          -->
-
-          <div class="login-dejacompte">
-            <p>Pas encore de compte ? <a href="#/register">INSCRIPTION</a></p>
+          <div class="bouton-connecter">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" ng-click="login(user)">
+              Se connecter
+            </button>
           </div>
 
-
-
-          <!--
-                  <a ng-click="loginfb()" class="btn btn-block btn-social btn-twitter">
-                      <span class="fa fa-twitter"></span>
-                      Sign in with Twitter
-                  </a>
-
-          -->
-
-
-
+          <div class="login-dejacompte">
+            <p>Pas encore inscrit ? <a ng-click="registerCancel()">Inscription</a></p>
+          </div>
 
         </div>
 
